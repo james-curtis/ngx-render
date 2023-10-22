@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Optional, PLATFORM_ID } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +10,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngx-render';
+  platformId: any = Inject(PLATFORM_ID);
   view: [number, number] = [700, 300];
   data = [
     {
@@ -58,4 +62,16 @@ export class AppComponent {
       label: 'Italy',
     },
   ];
+
+  params: Record<string, string> | undefined;
+
+  @Optional()
+  @Inject(REQUEST)
+  private readonly request!: Request | null;
+
+  constructor() {
+    if (isPlatformServer(this.platformId)) {
+      console.log(this.request?.url);
+    }
+  }
 }
