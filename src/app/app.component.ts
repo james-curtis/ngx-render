@@ -80,7 +80,6 @@ export class AppComponent implements OnInit {
     if (isPlatformServer(this.platformId)) {
       console.log(`req`, this.req);
       this.test = this.req.method;
-      // this.choose = this.req.method;
     }
   }
 }
