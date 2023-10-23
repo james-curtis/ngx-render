@@ -1,16 +1,21 @@
-import { Component, Inject, Optional, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  Optional,
+  PLATFORM_ID,
+} from '@angular/core';
+import { Request } from 'express';
 import { isPlatformServer } from '@angular/common';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { Request } from 'express';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ngx-render';
-  platformId: any = Inject(PLATFORM_ID);
   view: [number, number] = [700, 300];
   data = [
     {
@@ -62,16 +67,20 @@ export class AppComponent {
       label: 'Italy',
     },
   ];
+  test: string | undefined;
+  test2: string | undefined = 'asdf';
+  choose = 'POST';
 
-  params: Record<string, string> | undefined;
+  constructor(
+    @Optional() @Inject(REQUEST) protected req: Request,
+    @Inject(PLATFORM_ID) protected platformId: NonNullable<unknown>,
+  ) {}
 
-  @Optional()
-  @Inject(REQUEST)
-  private readonly request!: Request | null;
-
-  constructor() {
+  ngOnInit(): void {
     if (isPlatformServer(this.platformId)) {
-      console.log(this.request?.url);
+      console.log(`req`, this.req);
+      this.test = this.req.method;
+      // this.choose = this.req.method;
     }
   }
 }

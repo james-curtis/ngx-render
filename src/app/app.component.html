@@ -1,4 +1,7 @@
 <div class="wrapper">
-  {{params}}
+  <p *ngIf="choose==='POST';else elseBlock">{{test}}</p>
+  <ng-template #elseBlock>
+    <div>{{test2}}</div>
+  </ng-template>
   <ngx-charts-bar-vertical [results]="data" [view]="view" xAxis="{{true}}" yAxis="{{true}}"></ngx-charts-bar-vertical>
 </div>
