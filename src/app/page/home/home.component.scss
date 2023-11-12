@@ -1,0 +1,6 @@
+.wrapper {
+  position: absolute;
+}
+:host ::ng-deep * {
+  animation: none !important;
+}

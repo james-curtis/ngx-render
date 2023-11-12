@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { PlatformService } from '../../../services/platform/platform.service';
-import { EnvService } from '../../../services/env/env.service';
-import { ExposedEnv } from '../../../../env/exposed-env';
+import { Component } from '@angular/core';
+import { PlatformService } from '../../service/platform/platform.service';
+import { ChartsService } from '../../service/charts/charts.service';
+import { ChartType } from '../../interface/chart-param.interface';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   view: [number, number] = [700, 300];
-  data = [
+  data: NonNullable<unknown> = [
     {
       name: 'Germany',
       value: 40632,
       extra: {
         code: 'de',
       },
-      label: 'Germany',
     },
     {
       name: 'United States',
@@ -24,7 +23,6 @@ export class HomeComponent implements OnInit {
       extra: {
         code: 'us',
       },
-      label: 'United States',
     },
     {
       name: 'France',
@@ -32,7 +30,6 @@ export class HomeComponent implements OnInit {
       extra: {
         code: 'fr',
       },
-      label: 'France',
     },
     {
       name: 'United Kingdom',
@@ -40,7 +37,6 @@ export class HomeComponent implements OnInit {
       extra: {
         code: 'uk',
       },
-      label: 'United Kingdom',
     },
     {
       name: 'Spain',
@@ -48,7 +44,6 @@ export class HomeComponent implements OnInit {
       extra: {
         code: 'es',
       },
-      label: 'Spain',
     },
     {
       name: 'Italy',
@@ -56,21 +51,19 @@ export class HomeComponent implements OnInit {
       extra: {
         code: 'it',
       },
-      label: 'Italy',
     },
   ];
-  test: string | undefined;
-  test2: string | undefined = 'asdf';
-  choose = 'POST';
+  type: ChartType = ChartType.VerticalBar;
+  protected readonly ChartType = ChartType;
 
   constructor(
     private readonly platformService: PlatformService,
-    private readonly envService: EnvService,
-  ) {}
-
-  ngOnInit(): void {
-    if (this.platformService.isBrowser()) {
-      console.log(this.envService.getEnv(ExposedEnv.LANG));
-    }
+    private readonly chartsService: ChartsService,
+  ) {
+    const chartParam = this.chartsService.getChartParam();
+    if (!chartParam) return;
+    this.view = [chartParam.width, chartParam.height];
+    // this.data = chartParam.data;
+    this.type = chartParam.type;
   }
 }

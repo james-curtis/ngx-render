@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div [ngSwitch]="type">
+    <ngx-charts-bar-vertical
+      *ngSwitchCase="ChartType.VerticalBar"
+      [animations]="false"
+      [results]="data"
+      [view]="view"
+      xAxis="{{ true }}"
+      yAxis="{{ true }}"
+    />
+    <ngx-charts-bar-horizontal
+      *ngSwitchCase="ChartType.HorizontalBar"
+      [animations]="false"
+      [results]="data"
+      [view]="view"
+      xAxis="{{ true }}"
+      yAxis="{{ true }}"
+    />
+    <ngx-charts-pie-chart
+      *ngSwitchCase="ChartType.PieChart"
+      [animations]="false"
+      [results]="data"
+      [view]="view"
+    />
+    <div *ngSwitchDefault>No matching chart type was found</div>
+  </div>
+</div>
