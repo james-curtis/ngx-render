@@ -3,7 +3,7 @@ ENV CI=true BUILD_NUMBER=1
 USER root
 WORKDIR /data/app
 COPY . .
-RUN npm i -g pnpm
+RUN npm config set registry https://registry.npmmirror.com && npm i -g pnpm
 RUN pnpm i
 RUN pnpm run build:ssr
 
