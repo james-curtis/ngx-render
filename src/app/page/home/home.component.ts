@@ -15,60 +15,6 @@ export class HomeComponent {
   options!: NgxOptions;
   externalCSS: string = '';
 
-  private readonly defaultOptions: NgxOptions = {
-    results: [
-      {
-        name: 'Germany',
-        value: 40632,
-        extra: {
-          code: 'de',
-        },
-      },
-      {
-        name: 'United States',
-        value: 50000,
-        extra: {
-          code: 'us',
-        },
-      },
-      {
-        name: 'France',
-        value: 36745,
-        extra: {
-          code: 'fr',
-        },
-      },
-      {
-        name: 'United Kingdom',
-        value: 36240,
-        extra: {
-          code: 'uk',
-        },
-      },
-      {
-        name: 'Spain',
-        value: 33000,
-        extra: {
-          code: 'es',
-        },
-      },
-      {
-        name: 'Italy',
-        value: 35800,
-        extra: {
-          code: 'it',
-        },
-      },
-    ],
-    xAxis: true,
-    yAxis: true,
-    legend: true,
-    legendTitle: 'Legend',
-    showXAxisLabel: true,
-    showYAxisLabel: true,
-    view: [700, 300],
-    animations: false,
-  };
   private readonly componentMap: Map<string, Type<Component>> = new Map();
 
   constructor(
@@ -84,7 +30,7 @@ export class HomeComponent {
     const chartParam = this.chartsService.getChartParam();
     if (!chartParam) return;
     this.type = chartParam.type;
-    this.options = Object.assign({}, this.defaultOptions, chartParam.ngxOptions);
+    this.options = Object.assign({}, chartParam.ngxOptions);
     this.externalCSS = chartParam.externalCSS;
     if (!this.componentMap.has(this.type)) {
       throw new Error(`can not found ${this.type}`);
