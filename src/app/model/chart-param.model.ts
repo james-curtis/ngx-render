@@ -1,13 +1,15 @@
-import { ChartType, IChartParam, INgxOptions } from '../interface/chart-param.interface';
+import {
+  ApiChartParamData,
+  ChartParam,
+  ChartType,
+  NgxOptions,
+} from '../interface/chart-param.interface';
 import { LegendPosition } from '@swimlane/ngx-charts';
 
-export class ChartParamModel implements IChartParam {
-  data: unknown;
-  width: number;
-  height: number;
+export class ChartParamModel implements ChartParam {
   type: ChartType;
   externalCSS: string;
-  ngxOptions: INgxOptions = {
+  ngxOptions: NgxOptions = {
     rotateXAxisTicks: true,
     wrapTicks: false,
     legendPosition: LegendPosition.Right,
@@ -27,11 +29,8 @@ export class ChartParamModel implements IChartParam {
     showYAxis: true,
   };
 
-  constructor(props?: IChartParam) {
-    this.data = props?.data || null;
-    this.width = Number(props?.width) || 700;
-    this.height = Number(props?.height) || 300;
-    this.type = props?.type || ChartType.VerticalBar;
+  constructor(props?: ApiChartParamData) {
+    this.type = props?.type || 'BarVerticalComponent';
     Object.assign(this.ngxOptions, props?.ngxOptions);
     this.externalCSS = props?.externalCSS ?? '';
   }

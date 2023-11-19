@@ -1,36 +1,13 @@
-import { LegendPosition } from '@swimlane/ngx-charts';
+import * as ngx from '@swimlane/ngx-charts';
 
-export enum ChartType {
-  HorizontalBar = 'HorizontalBar',
-  VerticalBar = 'VerticalBar',
-  PieChart = 'PieChart',
-}
+export type ChartType = keyof typeof ngx;
 
-export interface INgxOptions {
-  showXAxis: boolean;
-  showYAxis: boolean;
-  showLegend: boolean;
-  legendTitle: string;
-  legendPosition: LegendPosition;
-  showXAxisLabel: boolean;
-  showYAxisLabel: boolean;
-  xAxisLabel: string;
-  yAxisLabel: string;
-  showGridLines: boolean;
-  showDataLabel: boolean;
-  trimXAxisTicks: boolean;
-  trimYAxisTicks: boolean;
-  maxXAxisTickLength: number;
-  maxYAxisTickLength: number;
-  rotateXAxisTicks: boolean;
-  wrapTicks: boolean;
-}
+export type NgxOptions = Record<string, unknown>;
 
-export interface IChartParam {
-  data: unknown;
-  width: number;
-  height: number;
+export interface ChartParam {
   type: ChartType;
   externalCSS?: string;
-  ngxOptions?: Partial<INgxOptions>;
+  ngxOptions?: Partial<NgxOptions>;
 }
+
+export type ApiChartParamData = Partial<ChartParam>;

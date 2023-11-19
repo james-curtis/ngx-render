@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
-import {BarChartModule, PieChartModule} from '@swimlane/ngx-charts';
-import {NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
+import { HocModule } from '../../components/hoc/hoc.module';
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
     HomeRoutingModule,
-    BarChartModule,
+    NgxChartsModule,
     NgIf,
     NgSwitch,
     NgSwitchCase,
-    PieChartModule,
     NgSwitchDefault,
+    HocModule,
   ],
 })
 export class HomeModule {}

@@ -3,7 +3,7 @@ import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
 import { PlatformService } from '../platform/platform.service';
 import { ChartParamModel } from '../../model/chart-param.model';
-import { ChartType, IChartParam } from '../../interface/chart-param.interface';
+import { ChartType, ChartParam, ApiChartParamData } from '../../interface/chart-param.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,13 +20,15 @@ export class ChartsService {
   ) {
     this.chartParamModel = new ChartParamModel();
     if (this.platformService.isServer()) {
-      const defaultParams: IChartParam = {
-        data: null,
-        width: 700,
-        height: 300,
-        type: ChartType.VerticalBar,
+      const defaultParams: ChartParam = {
+        type: 'BarVerticalComponent',
       };
-      const params = Object.assign({}, defaultParams, this.request.query, this.request.body);
+      const params: ApiChartParamData = Object.assign(
+        {},
+        defaultParams,
+        this.request.query,
+        this.request.body,
+      ) as ApiChartParamData;
       this.chartParamModel = new ChartParamModel(params);
       this.transferState.set(
         this.chartParamStateKey,
@@ -35,7 +37,7 @@ export class ChartsService {
     }
 
     if (this.platformService.isBrowser()) {
-      const chartParam: IChartParam | undefined = this.transferState.get(
+      const chartParam: ChartParam | undefined = this.transferState.get(
         this.chartParamStateKey,
         new ChartParamModel(),
       );
