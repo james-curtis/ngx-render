@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { PlatformService } from '../../service/platform/platform.service';
 import { ChartsService } from '../../service/charts/charts.service';
-import { ChartType } from '../../interface/chart-param.interface';
+import { ChartType, INgxOptions } from '../../interface/chart-param.interface';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  protected readonly ChartType = ChartType;
   view: [number, number] = [700, 300];
-  data: NonNullable<unknown> = [
+  data: unknown;
+  type: ChartType = ChartType.VerticalBar;
+  options!: INgxOptions;
+  externalCSS: string = '';
+
+  private static readonly defaultData: NonNullable<unknown> = [
     {
       name: 'Germany',
       value: 40632,
@@ -53,8 +59,6 @@ export class HomeComponent {
       },
     },
   ];
-  type: ChartType = ChartType.VerticalBar;
-  protected readonly ChartType = ChartType;
 
   constructor(
     private readonly platformService: PlatformService,
@@ -63,7 +67,9 @@ export class HomeComponent {
     const chartParam = this.chartsService.getChartParam();
     if (!chartParam) return;
     this.view = [chartParam.width, chartParam.height];
-    // this.data = chartParam.data;
+    this.data = chartParam.data || HomeComponent.defaultData;
     this.type = chartParam.type;
+    this.options = chartParam.ngxOptions;
+    this.externalCSS = chartParam.externalCSS;
   }
 }

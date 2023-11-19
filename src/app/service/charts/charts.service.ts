@@ -1,11 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  makeStateKey,
-  Optional,
-  StateKey,
-  TransferState,
-} from '@angular/core';
+import { Inject, Injectable, makeStateKey, Optional, StateKey, TransferState } from '@angular/core';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
 import { PlatformService } from '../platform/platform.service';
@@ -16,7 +9,7 @@ import { ChartType, IChartParam } from '../../interface/chart-param.interface';
   providedIn: 'root',
 })
 export class ChartsService {
-  private readonly chartParamModel: ChartParamModel | undefined;
+  private readonly chartParamModel: ChartParamModel;
   private readonly chartParamStateKey: StateKey<ChartParamModel> =
     makeStateKey<ChartParamModel>('chartData');
 
@@ -25,19 +18,15 @@ export class ChartsService {
     private readonly platformService: PlatformService,
     private readonly transferState: TransferState,
   ) {
+    this.chartParamModel = new ChartParamModel();
     if (this.platformService.isServer()) {
       const defaultParams: IChartParam = {
-        data: {},
+        data: null,
         width: 700,
         height: 300,
         type: ChartType.VerticalBar,
       };
-      const params = Object.assign(
-        {},
-        defaultParams,
-        this.request.query,
-        this.request.body,
-      );
+      const params = Object.assign({}, defaultParams, this.request.query, this.request.body);
       this.chartParamModel = new ChartParamModel(params);
       this.transferState.set(
         this.chartParamStateKey,
@@ -48,13 +37,13 @@ export class ChartsService {
     if (this.platformService.isBrowser()) {
       const chartParam: IChartParam | undefined = this.transferState.get(
         this.chartParamStateKey,
-        undefined,
+        new ChartParamModel(),
       );
       if (chartParam) this.chartParamModel = new ChartParamModel(chartParam);
     }
   }
 
-  getChartParam(): ChartParamModel | undefined {
+  getChartParam(): ChartParamModel {
     return this.chartParamModel;
   }
 }

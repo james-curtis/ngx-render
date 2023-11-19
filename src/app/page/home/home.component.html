@@ -3,25 +3,59 @@
     <ngx-charts-bar-vertical
       *ngSwitchCase="ChartType.VerticalBar"
       [animations]="false"
+      [tooltipDisabled]="true"
       [results]="data"
       [view]="view"
-      xAxis="{{ true }}"
-      yAxis="{{ true }}"
-    />
+      [xAxis]="options.showXAxis"
+      [yAxis]="options.showYAxis"
+      [legend]="options.showLegend"
+      [legendTitle]="options.legendTitle"
+      [legendPosition]="options.legendPosition"
+      [showXAxisLabel]="options.showXAxisLabel"
+      [showYAxisLabel]="options.showYAxisLabel"
+      [xAxisLabel]="options.xAxisLabel"
+      [yAxisLabel]="options.yAxisLabel"
+      [showGridLines]="options.showGridLines"
+      [trimXAxisTicks]="options.trimXAxisTicks"
+      [trimYAxisTicks]="options.trimYAxisTicks"
+      [rotateXAxisTicks]="options.rotateXAxisTicks"
+      [maxXAxisTickLength]="options.maxXAxisTickLength"
+      [maxYAxisTickLength]="options.maxYAxisTickLength"
+      [wrapTicks]="options.wrapTicks"
+    ></ngx-charts-bar-vertical>
     <ngx-charts-bar-horizontal
       *ngSwitchCase="ChartType.HorizontalBar"
       [animations]="false"
+      [tooltipDisabled]="true"
       [results]="data"
       [view]="view"
-      xAxis="{{ true }}"
-      yAxis="{{ true }}"
-    />
+      [xAxis]="options.showXAxis"
+      [yAxis]="options.showYAxis"
+      [legend]="options.showLegend"
+      [legendTitle]="options.legendTitle"
+      [legendPosition]="options.legendPosition"
+      [showXAxisLabel]="options.showXAxisLabel"
+      [showYAxisLabel]="options.showYAxisLabel"
+      [xAxisLabel]="options.xAxisLabel"
+      [yAxisLabel]="options.yAxisLabel"
+      [showGridLines]="options.showGridLines"
+      [trimXAxisTicks]="options.trimXAxisTicks"
+      [trimYAxisTicks]="options.trimYAxisTicks"
+      [rotateXAxisTicks]="options.rotateXAxisTicks"
+      [maxXAxisTickLength]="options.maxXAxisTickLength"
+      [maxYAxisTickLength]="options.maxYAxisTickLength"
+      [wrapTicks]="options.wrapTicks"
+    ></ngx-charts-bar-horizontal>
     <ngx-charts-pie-chart
       *ngSwitchCase="ChartType.PieChart"
       [animations]="false"
+      [tooltipDisabled]="true"
       [results]="data"
       [view]="view"
-    />
+      [legend]="options.showLegend"
+      [legendTitle]="options.legendTitle"
+      [legendPosition]="options.legendPosition"
+    ></ngx-charts-pie-chart>
     <div *ngSwitchDefault>No matching chart type was found</div>
   </div>
 </div>

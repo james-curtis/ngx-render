@@ -4,3 +4,7 @@
 :host ::ng-deep * {
   animation: none !important;
 }
+
+:host ::ng-deep .chart-legend .legend-label-text {
+  vertical-align: unset;
+}
