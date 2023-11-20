@@ -15,5 +15,5 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json .
 EXPOSE 4000
 USER root
-HEALTHCHECK CMD http://localhost:4000 -f || exit 1
+HEALTHCHECK CMD curl http://localhost:4000 -f || exit 1
 ENTRYPOINT npm run serve:ssr
