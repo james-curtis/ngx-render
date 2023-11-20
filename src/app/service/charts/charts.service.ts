@@ -3,7 +3,7 @@ import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
 import { PlatformService } from '../platform/platform.service';
 import { ChartParamModel } from '../../model/chart-param.model';
-import { ChartType, ChartParam, ApiChartParamData } from '../../interface/chart-param.interface';
+import { ApiChartParamData, ChartParam } from '../../interface/chart-param.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,12 +20,8 @@ export class ChartsService {
   ) {
     this.chartParamModel = new ChartParamModel();
     if (this.platformService.isServer()) {
-      const defaultParams: ChartParam = {
-        type: 'BarVerticalComponent',
-      };
       const params: ApiChartParamData = Object.assign(
         {},
-        defaultParams,
         this.request.query,
         this.request.body,
       ) as ApiChartParamData;

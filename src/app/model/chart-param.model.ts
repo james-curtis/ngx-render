@@ -4,7 +4,6 @@ import {
   ChartType,
   NgxOptions,
 } from '../interface/chart-param.interface';
-import { LegendPosition } from '@swimlane/ngx-charts';
 
 export class ChartParamModel implements ChartParam {
   type: ChartType;

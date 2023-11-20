@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@swimlane/ngx-charts@20.5.0':
-    hash: 3r5hnfpitojqap3ayz4fj4kl7q
+    hash: dmlecetvqkkqte3pgde6d2c3qa
     path: patches/@swimlane__ngx-charts@20.5.0.patch
 
 dependencies:
@@ -42,7 +42,7 @@ dependencies:
     version: 16.2.0(@angular/common@16.2.10)(@angular/core@16.2.10)(express@4.18.2)
   '@swimlane/ngx-charts':
     specifier: ^20.5.0
-    version: 20.5.0(patch_hash=3r5hnfpitojqap3ayz4fj4kl7q)(@angular/animations@16.2.10)(@angular/cdk@16.2.9)(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/forms@16.2.10)(@angular/platform-browser-dynamic@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1)
+    version: 20.5.0(patch_hash=dmlecetvqkkqte3pgde6d2c3qa)(@angular/animations@16.2.10)(@angular/cdk@16.2.9)(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/forms@16.2.10)(@angular/platform-browser-dynamic@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1)
   express:
     specifier: ^4.15.2
     version: 4.18.2
@@ -2783,7 +2783,7 @@ packages:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: true
 
-  /@swimlane/ngx-charts@20.5.0(patch_hash=3r5hnfpitojqap3ayz4fj4kl7q)(@angular/animations@16.2.10)(@angular/cdk@16.2.9)(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/forms@16.2.10)(@angular/platform-browser-dynamic@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1):
+  /@swimlane/ngx-charts@20.5.0(patch_hash=dmlecetvqkkqte3pgde6d2c3qa)(@angular/animations@16.2.10)(@angular/cdk@16.2.9)(@angular/common@16.2.10)(@angular/core@16.2.10)(@angular/forms@16.2.10)(@angular/platform-browser-dynamic@16.2.10)(@angular/platform-browser@16.2.10)(rxjs@7.8.1):
     resolution: {integrity: sha512-PNBIHdu/R3ceD7jnw1uCBVOj4k3T6IxfdW6xsDsglGkZyoWMEEq4tLoEurjLEKzmDtRv9c35kVNOXy0lkOuXeA==}
     peerDependencies:
       '@angular/animations': '>=12.0.0'
