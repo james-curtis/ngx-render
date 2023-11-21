@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/james-curtis/ngx-render/compare/v0.1.0...v0.1.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* update ([34505af](https://github.com/james-curtis/ngx-render/commit/34505afa2feb5b7c73ed00bf1c042c5a39c65582))
+
 ## [0.1.0](https://github.com/james-curtis/ngx-render/compare/v0.0.1...v0.1.0) (2023-11-21)
 
 
