@@ -4,6 +4,7 @@ import { Request } from 'express';
 import { PlatformService } from '../platform/platform.service';
 import { ChartParamModel } from '../../model/chart-param.model';
 import { ApiChartParamData, ChartParam } from '../../interface/chart-param.interface';
+import { parse } from 'superjson';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,7 @@ export class ChartsService {
       const params: ApiChartParamData = Object.assign(
         {},
         this.request.query,
-        this.request.body,
+        parse(JSON.stringify(this.request.body)),
       ) as ApiChartParamData;
       this.chartParamModel = new ChartParamModel(params);
       this.transferState.set(
