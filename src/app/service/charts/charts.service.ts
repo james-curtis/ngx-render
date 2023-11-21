@@ -4,15 +4,14 @@ import { Request } from 'express';
 import { PlatformService } from '../platform/platform.service';
 import { ChartParamModel } from '../../model/chart-param.model';
 import { ApiChartParamData, ChartParam } from '../../interface/chart-param.interface';
-import { parse } from 'superjson';
+import { parse, stringify } from 'superjson';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChartsService {
   private readonly chartParamModel: ChartParamModel;
-  private readonly chartParamStateKey: StateKey<ChartParamModel> =
-    makeStateKey<ChartParamModel>('chartData');
+  private readonly chartParamStateKey: StateKey<ChartParam> = makeStateKey<ChartParam>('chartData');
 
   constructor(
     @Optional() @Inject(REQUEST) private readonly request: Request,
@@ -21,23 +20,19 @@ export class ChartsService {
   ) {
     this.chartParamModel = new ChartParamModel();
     if (this.platformService.isServer()) {
-      const params: ApiChartParamData = Object.assign(
-        {},
-        this.request.query,
-        parse(JSON.stringify(this.request.body)),
+      const params: ApiChartParamData = parse(
+        JSON.stringify(this.request.body) || '{}',
       ) as ApiChartParamData;
       this.chartParamModel = new ChartParamModel(params);
-      this.transferState.set(
-        this.chartParamStateKey,
-        JSON.parse(JSON.stringify(this.chartParamModel)),
-      );
+      this.transferState.set(this.chartParamStateKey, JSON.parse(stringify(this.chartParamModel)));
     }
 
     if (this.platformService.isBrowser()) {
-      const chartParam: ChartParam | undefined = this.transferState.get(
+      let chartParam: ChartParam | undefined = this.transferState.get(
         this.chartParamStateKey,
-        new ChartParamModel(),
+        parse(stringify(new ChartParamModel())),
       );
+      chartParam = parse<ChartParam>(JSON.stringify(chartParam));
       if (chartParam) this.chartParamModel = new ChartParamModel(chartParam);
     }
   }
