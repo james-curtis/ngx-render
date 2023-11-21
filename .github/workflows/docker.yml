@@ -10,14 +10,14 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
       - name: JSON to variables
         uses: antifree/json-to-variables@v1.0.1
         with:
           filename: 'package.json'
           prefix: 'package'
-      -
-        name: Checkout
-        uses: actions/checkout@v4
       -
         name: Docker meta
         id: meta
