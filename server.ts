@@ -11,7 +11,7 @@ import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
-  server.use(express.json());
+  server.use(express.json({ limit: '50mb' }));
 
   const distFolder = join(process.cwd(), 'dist/ngx-render/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
