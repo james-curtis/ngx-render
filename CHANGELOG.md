@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/james-curtis/ngx-render/compare/v0.1.2...v0.1.3) (2023-11-29)
+
+
+### Bug Fixes
+
+* ssr 模式下图表抖动 ([93777ae](https://github.com/james-curtis/ngx-render/commit/93777ae913bbf0b6ffc3f173b42ccb2e2b3be08d))
+
 ## [0.1.2](https://github.com/james-curtis/ngx-render/compare/v0.1.1...v0.1.2) (2023-11-29)
 
 
