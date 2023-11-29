@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/james-curtis/ngx-render/compare/v0.1.1...v0.1.2) (2023-11-29)
+
+
+### Bug Fixes
+
+* json parser limit ([71a6b7f](https://github.com/james-curtis/ngx-render/commit/71a6b7fa78899e183dd1910bc283b2786dbebf6d))
+
 ## [0.1.1](https://github.com/james-curtis/ngx-render/compare/v0.1.0...v0.1.1) (2023-11-21)
 
 
