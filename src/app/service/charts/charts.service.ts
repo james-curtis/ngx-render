@@ -22,6 +22,7 @@ export class ChartsService {
     if (this.platformService.isServer()) {
       const params: ApiChartParamData = parse(
         JSON.stringify(this.request.body) || '{}',
+        // stringify(this.request.body) || '{}', // debug api
       ) as ApiChartParamData;
       this.chartParamModel = new ChartParamModel(params);
       this.transferState.set(this.chartParamStateKey, JSON.parse(stringify(this.chartParamModel)));

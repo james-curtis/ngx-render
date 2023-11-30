@@ -65,6 +65,6 @@ export class ChartParamModel implements ChartParam {
   constructor(props?: ApiChartParamData) {
     this.type = props?.type || 'BarVerticalComponent';
     Object.assign(this.ngxOptions, props?.ngxOptions);
-    this.externalCSS = props?.externalCSS ?? '';
+    this.externalCSS = props?.externalCSS || '';
   }
 }

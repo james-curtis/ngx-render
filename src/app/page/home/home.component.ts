@@ -1,20 +1,22 @@
-import { Component, Type } from '@angular/core';
+import { Component, Type, ViewEncapsulation } from '@angular/core';
 import { PlatformService } from '../../service/platform/platform.service';
 import { ChartsService } from '../../service/charts/charts.service';
 import { ChartType, NgxOptions } from '../../interface/chart-param.interface';
 import * as ngx from '@swimlane/ngx-charts';
 import { BarVerticalComponent, BaseChartComponent } from '@swimlane/ngx-charts';
 import * as shape from 'd3-shape';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent {
   private readonly type: ChartType = 'BarVerticalComponent';
   component: Type<Component> = BarVerticalComponent as unknown as Type<Component>;
   options!: NgxOptions;
-  externalCSS = '';
+  externalCSS: SafeHtml;
 
   private curves: Record<string, shape.CurveFactoryLineOnly> = {
     Basis: shape.curveBasis,
@@ -40,6 +42,7 @@ export class HomeComponent {
   constructor(
     private platformService: PlatformService,
     private chartsService: ChartsService,
+    private sanitizer: DomSanitizer,
   ) {
     Object.entries(ngx).map(([name, comp]) => {
       const _comp = comp as any;
@@ -56,7 +59,9 @@ export class HomeComponent {
 
     this.type = chartParam.type;
     this.options = Object.assign({}, chartParam.ngxOptions);
-    this.externalCSS = chartParam.externalCSS || '';
+    this.externalCSS = sanitizer.bypassSecurityTrustHtml(
+      `<style>${chartParam.externalCSS}</style>` || '',
+    );
     if (!this.componentMap.has(this.type)) {
       throw new Error(`can not found ${this.type}`);
     }
