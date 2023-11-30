@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/james-curtis/ngx-render/compare/v0.1.3...v0.1.4) (2023-11-30)
+
+
+### Bug Fixes
+
+* externalCss ([4fe9658](https://github.com/james-curtis/ngx-render/commit/4fe965872d83cd15efe43db0831c6db67266868f))
+
 ## [0.1.3](https://github.com/james-curtis/ngx-render/compare/v0.1.2...v0.1.3) (2023-11-29)
 
 
