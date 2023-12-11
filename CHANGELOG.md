@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.5](https://github.com/james-curtis/ngx-render/compare/v0.1.4...v0.1.5) (2023-12-11)
+
+
+### Bug Fixes
+
+* update angular json ([8e13980](https://github.com/james-curtis/ngx-render/commit/8e1398031e4190464135ba4846de8a76a6f13615))
+* work on wsl, unable to use soft link ([eafe119](https://github.com/james-curtis/ngx-render/commit/eafe119617a8ce2211b370fd0ba9223cf2e0d7c7))
+
 ## [0.1.4](https://github.com/james-curtis/ngx-render/compare/v0.1.3...v0.1.4) (2023-11-30)
 
 
